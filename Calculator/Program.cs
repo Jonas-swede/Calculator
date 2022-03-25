@@ -7,7 +7,8 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            double term1, term2, result=0;
+            double result=0;
+            
             ConsoleKeyInfo keyPressed;
             do
             {
@@ -19,38 +20,20 @@ namespace Calculator
                 switch (keyPressed.Key)
                 {
                     case ConsoleKey.D1:
-                        WriteLine("Enter first number");
-                        Double.TryParse(ReadLine(),out term1);
-                        WriteLine("Enter second number");
-                        Double.TryParse(ReadLine(), out term2);
-                        result = Addition(term1, term2);
+                        result = Addition(QueryUser());
                         break;
 
                     case ConsoleKey.D2:
-                        WriteLine("Enter first number");
-                        Double.TryParse(ReadLine(), out term1);
-                        WriteLine("Enter second number");
-                        Double.TryParse(ReadLine(), out term2);
-                        result = Subtraction(term1, term2);
+                        result = Subtraction(QueryUser());
                         break;
 
                     case ConsoleKey.D3:
-                        WriteLine("Enter first number");
-                        Double.TryParse(ReadLine(), out term1);
-                        WriteLine("Enter second number");
-                        Double.TryParse(ReadLine(), out term2);
-                        result = Multiplication(term1, term2);
+                        result = Multiplication(QueryUser());
                         break;
 
                     case ConsoleKey.D4:
-                        WriteLine("Enter first number");
-                        Double.TryParse(ReadLine(), out term1);
-                        WriteLine("Enter second number");
-                        Double.TryParse(ReadLine(), out term2);
-                        result = Division(term1, term2);
+                        result = Division(QueryUser());
                         break;
-
-                    
                 }
 
                 WriteLine("Result: {0}", result);
@@ -58,36 +41,51 @@ namespace Calculator
             } while (keyPressed.Key!=ConsoleKey.Escape);
         }
 
-        static double Addition(double term1, double term2)
+        static double[] QueryUser()
+        {
+            double[] terms= new double[2];
+            do
+            {
+                WriteLine("Enter first number");
+            } while (!Double.TryParse(ReadLine(), out terms[0]));
+            do
+            {
+                WriteLine("Enter second number");
+            }
+            while(!Double.TryParse(ReadLine(), out terms[1]));
+            return terms;
+        }
+
+        static double Addition(double[] terms)
         {
             double returnValue;
-            returnValue = term1 + term2;
+            returnValue = terms[0] + terms[1];
             return returnValue;
         }
 
-        static double Subtraction(double term1, double term2)
+        static double Subtraction(double[] terms)
         {
             double returnValue;
-            returnValue = term1 - term2;
+            returnValue = terms[0] - terms[1];
             return returnValue;
         }
 
-        static double Multiplication(double term1, double term2)
+        static double Multiplication(double[] terms)
         {
             double returnValue;
-            returnValue = term1 * term2;
+            returnValue = terms[0] * terms[1];
             return returnValue;
         }
 
-        static double Division(double term1, double term2)
+        static double Division(double[] terms)
         {
             double returnValue;
-            if (term2 == 0)
+            if (terms[1] == 0)
             {
                 WriteLine("Error. Division by zero");
                 return 0;
             }
-            returnValue = term1 / term2;
+            returnValue = terms[0] / terms[1];
             return returnValue;
         }
     }
