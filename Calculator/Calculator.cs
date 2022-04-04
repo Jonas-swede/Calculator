@@ -1,9 +1,9 @@
 ﻿using System;
 using static System.Console;
 
-namespace Calculator
+namespace CalculatorProject
 {
-    class Program
+    public class Calculator
     {
         static void Main(string[] args)
         {
@@ -56,28 +56,32 @@ namespace Calculator
             return terms;
         }
 
-        static double Addition(double[] terms)
+        public static double Addition(double[] terms)
         {
             double returnValue;
             returnValue = terms[0] + terms[1];
             return returnValue;
         }
 
-        static double Subtraction(double[] terms)
+        public static double Addition(double term1, double term2) => term1 + term2;
+
+        public static double Subtraction(double[] terms)
         {
             double returnValue;
             returnValue = terms[0] - terms[1];
             return returnValue;
         }
 
-        static double Multiplication(double[] terms)
+        public static double Subtraction(double term1, double term2) => term1 - term2;
+
+        public static double Multiplication(double[] terms)
         {
             double returnValue;
             returnValue = terms[0] * terms[1];
             return returnValue;
         }
 
-        static double Division(double[] terms)
+        public static double Division(double[] terms)
         {
             double returnValue;
             if (terms[1] == 0)
